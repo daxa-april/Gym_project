@@ -1,18 +1,23 @@
-application:
-  name: FitnessClub
+server:
+  port: 9096
 
 spring:
+  application:
+    name: FitnessClub
+
   datasource:
   url: jdbc:postgresql://localhost5432/fitness_club
-  username: fitness
-  password: mysecretpassword
+  username: root
+  password: root
+
   driver-class-name: org.postgresql.Driver
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
       show-sql: true
       properties:
-        format_sql: true
-liquidbase:
-  change-log: classpath:db/migration/db.changelog-master.xml
+        hibernate:
+          format_sql: true
+
 

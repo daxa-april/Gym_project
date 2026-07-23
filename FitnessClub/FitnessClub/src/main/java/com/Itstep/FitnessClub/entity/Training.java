@@ -16,7 +16,7 @@ public class Training {
     private Long trainingId;
     private String trainingName;
     private LocalDateTime trainingStart;
-    private String trainer;
+    private String trainerName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
@@ -24,4 +24,8 @@ public class Training {
 
     @Column(name = "booked_count")
     private int bookedCount;
+
+    public void setTrainingId(Long trainingId) {
+        this.trainingId = trainingId;
+    }
 }
