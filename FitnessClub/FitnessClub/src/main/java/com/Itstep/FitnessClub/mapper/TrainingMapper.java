@@ -1,6 +1,6 @@
 package com.Itstep.FitnessClub.mapper;
 
-import com.Itstep.FitnessClub.dto.responce.TrainingResponceDto;
+import com.Itstep.FitnessClub.dto.response.TrainingResponseDto;
 import com.Itstep.FitnessClub.entity.Training;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -11,5 +11,5 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface TrainingMapper {
 
-    TrainingResponceDto trainingtoTrainingResponceDto(Training training);
+    TrainingResponseDto trainingtoTrainingResponceDto(Training training);
 }

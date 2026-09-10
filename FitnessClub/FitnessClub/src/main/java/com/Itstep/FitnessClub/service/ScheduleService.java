@@ -1,7 +1,7 @@
 package com.Itstep.FitnessClub.service;
 
 import com.Itstep.FitnessClub.data.TrainingType;
-import com.Itstep.FitnessClub.dto.responce.TrainingResponceDto;
+import com.Itstep.FitnessClub.dto.response.TrainingResponseDto;
 import com.Itstep.FitnessClub.entity.Training;
 import com.Itstep.FitnessClub.mapper.TrainingMapper;
 import com.Itstep.FitnessClub.repository.TrainingRepositoryInterface;
@@ -23,18 +23,18 @@ public class ScheduleService {
     private final TrainingRepositoryInterface trainingRepository;
     private final TrainingMapper trainingMapper;
 
-    public List<TrainingResponceDto> getSchedule() {
+    public List<TrainingResponseDto> getSchedule() {
         List<Training> trainings = trainingRepository.findAll();
         return trainings.stream()
                 .map(trainingMapper::trainingtoTrainingResponceDto)
                 .collect(Collectors.toList());
     }
 
-    public List<TrainingResponceDto> getScheduleByDate(LocalDate date) {
+    public List<TrainingResponseDto> getScheduleByDate(LocalDate date) {
         return getScheduleByRange(date, date);
     }
 
-    public List<TrainingResponceDto> getScheduleByRange(LocalDate start, LocalDate end) {
+    public List<TrainingResponseDto> getScheduleByRange(LocalDate start, LocalDate end) {
         if (start.isAfter(end)) {
             throw new IllegalArgumentException("Start date cannot be after end date");
         }
@@ -45,7 +45,7 @@ public class ScheduleService {
                 .collect(Collectors.toList());
     }
 
-    public List<TrainingResponceDto> getScheduleByTrainingName(String trainingName) {
+    public List<TrainingResponseDto> getScheduleByTrainingName(String trainingName) {
         TrainingType trainingToSearch = TrainingType.valueOf(trainingName);
         return trainingRepository.findByTrainingType(trainingToSearch).stream()
                 .map(trainingMapper::trainingtoTrainingResponceDto)

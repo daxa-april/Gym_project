@@ -1,6 +1,6 @@
 package com.Itstep.FitnessClub.mapper;
 
-import com.Itstep.FitnessClub.dto.responce.TrainingResponceDto;
+import com.Itstep.FitnessClub.dto.response.TrainingResponseDto;
 import com.Itstep.FitnessClub.entity.Training;
 import java.time.LocalDateTime;
 import javax.annotation.processing.Generated;
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-09-10T12:49:22+0300",
+    date = "2026-09-10T16:56:10+0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
 public class TrainingMapperImpl implements TrainingMapper {
 
     @Override
-    public TrainingResponceDto trainingtoTrainingResponceDto(Training training) {
+    public TrainingResponseDto trainingtoTrainingResponceDto(Training training) {
         if ( training == null ) {
             return null;
         }
@@ -31,8 +31,8 @@ public class TrainingMapperImpl implements TrainingMapper {
         String trainingName = null;
         String roomName = null;
 
-        TrainingResponceDto trainingResponceDto = new TrainingResponceDto( trainingName, trainingStart, trainerName, roomName, bookedCount );
+        TrainingResponseDto trainingResponseDto = new TrainingResponseDto( trainingName, trainingStart, trainerName, roomName, bookedCount );
 
-        return trainingResponceDto;
+        return trainingResponseDto;
     }
 }

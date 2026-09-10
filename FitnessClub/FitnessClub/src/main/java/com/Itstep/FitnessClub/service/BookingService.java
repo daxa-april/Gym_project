@@ -1,7 +1,7 @@
 package com.Itstep.FitnessClub.service;
 
 import com.Itstep.FitnessClub.dto.request.BookingRequestDto;
-import com.Itstep.FitnessClub.dto.responce.BookingResponceDto;
+import com.Itstep.FitnessClub.dto.response.BookingResponseDto;
 import com.Itstep.FitnessClub.entity.Booking;
 import com.Itstep.FitnessClub.entity.Client;
 import com.Itstep.FitnessClub.entity.Subscription;
@@ -29,7 +29,7 @@ public class BookingService {
     private final ClientRepository clientRepository;
     private final BookingMapper bookingMapper;
 
-    public BookingResponceDto bookTraining(BookingRequestDto bookingRequestDto) {
+    public BookingResponseDto bookTraining(BookingRequestDto bookingRequestDto) {
         Client client = clientRepository.findById(bookingRequestDto.clientId())
                 .orElseThrow(() -> new ResourceNotFoundException("Client not found"));
 
@@ -41,12 +41,12 @@ public class BookingService {
         }
 
         if (bookingRepository.existsByClientAndTraining(client, training)) {
-            throw new IllegalArgumentException("Training has already been booked");
+            throw new NoPlaceAvailableException("Training has already been booked");
         }
 
         long bookedCount = bookingRepository.countByTraining(training);
         if (bookedCount >= training.getRoom().getCapacity()) {
-            throw new NoPlaceAvailableException("No places available");
+            throw new NoPlaceAvailableException("No places available for training");
         }
 
         Booking booking = new Booking(null, client, training, LocalDateTime.now());

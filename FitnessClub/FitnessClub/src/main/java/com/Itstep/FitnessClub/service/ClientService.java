@@ -1,7 +1,7 @@
 package com.Itstep.FitnessClub.service;
 
 import com.Itstep.FitnessClub.dto.request.ClientDto;
-import com.Itstep.FitnessClub.dto.responce.ClientInnerResponceDto;
+import com.Itstep.FitnessClub.dto.response.ClientInnerResponseDto;
 import com.Itstep.FitnessClub.entity.Client;
 import com.Itstep.FitnessClub.entity.Subscription;
 import com.Itstep.FitnessClub.exception.ResourceNotFoundException;
@@ -51,7 +51,7 @@ public class ClientService {
         }
     }
 
-    public ClientInnerResponceDto updateClientSubscriptionInfo(Long clientId, int trainingsLeftCount) {
+    public ClientInnerResponseDto updateClientSubscriptionInfo(Long clientId, int trainingsLeftCount) {
         if (clientRepository.findById(clientId).isPresent()) {
             Subscription subscriptionToChange = clientRepository.findById(clientId).get().getSubscription();
             subscriptionToChange.setTrainingsLeft(trainingsLeftCount);
@@ -61,12 +61,12 @@ public class ClientService {
         return clientMapper.clientToClientInnerResponceDto(clientRepository.findById(clientId).get());
     }
 
-    public ClientInnerResponceDto findByFullName(String fullName) {
+    public ClientInnerResponseDto findByFullName(String fullName) {
         return clientMapper.clientToClientInnerResponceDto(clientRepository.findByFullName(fullName));
 
     }
 
-    public ClientInnerResponceDto findByPhone(String number) {
+    public ClientInnerResponseDto findByPhone(String number) {
         return clientMapper.clientToClientInnerResponceDto(clientRepository.findByPhone(number));
     }
 }

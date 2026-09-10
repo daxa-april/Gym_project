@@ -1,7 +1,15 @@
 package com.Itstep.FitnessClub.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class SubscriptionExpiredException extends RuntimeException {
-    public SubscriptionExpiredException(String message) {
-        super(message + " Subscription expired");
-    }
+
+    private final String message;
+
 }

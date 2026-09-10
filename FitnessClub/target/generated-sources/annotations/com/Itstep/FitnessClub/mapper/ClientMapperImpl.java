@@ -1,14 +1,14 @@
 package com.Itstep.FitnessClub.mapper;
 
 import com.Itstep.FitnessClub.dto.request.ClientDto;
-import com.Itstep.FitnessClub.dto.responce.ClientInnerResponceDto;
+import com.Itstep.FitnessClub.dto.response.ClientInnerResponseDto;
 import com.Itstep.FitnessClub.entity.Client;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-09-10T12:06:33+0300",
+    date = "2026-09-10T16:56:10+0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)"
 )
 @Component
@@ -34,7 +34,7 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
-    public ClientInnerResponceDto clientToClientInnerResponceDto(Client client) {
+    public ClientInnerResponseDto clientToClientInnerResponceDto(Client client) {
         if ( client == null ) {
             return null;
         }
@@ -49,8 +49,8 @@ public class ClientMapperImpl implements ClientMapper {
 
         Long clientId = null;
 
-        ClientInnerResponceDto clientInnerResponceDto = new ClientInnerResponceDto( clientId, fullName, email, phone );
+        ClientInnerResponseDto clientInnerResponseDto = new ClientInnerResponseDto( clientId, fullName, email, phone );
 
-        return clientInnerResponceDto;
+        return clientInnerResponseDto;
     }
 }

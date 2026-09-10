@@ -1,7 +1,14 @@
 package com.Itstep.FitnessClub.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class NoPlaceAvailableException extends RuntimeException {
-    public NoPlaceAvailableException(String message) {
-        super(message + " No place available");
-    }
+
+    public final String message;
+
 }
