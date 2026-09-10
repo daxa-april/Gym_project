@@ -1,18 +1,16 @@
 package com.Itstep.FitnessClub.repository;
 
 import com.Itstep.FitnessClub.entity.Client;
-
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Хранит информацию о клиентах.
  */
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Long> {
 
-public class ClientRepository {
+    Client findByFullName(String name);
 
-    List<Client> clients;
-
-    public ClientRepository(List<Client> clients) {
-        this.clients = clients;
-    }
+    Client findByPhone(String number);
 }

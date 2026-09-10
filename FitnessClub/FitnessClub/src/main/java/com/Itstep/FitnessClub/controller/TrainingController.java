@@ -1,12 +1,12 @@
 package com.Itstep.FitnessClub.controller;
 
 import com.Itstep.FitnessClub.dto.request.TrainingChangeRequestDto;
+import com.Itstep.FitnessClub.entity.Room;
 import com.Itstep.FitnessClub.entity.Training;
-import com.Itstep.FitnessClub.exception.TrainingNotFoundException;
+import com.Itstep.FitnessClub.exception.ResourceNotFoundException;
 import com.Itstep.FitnessClub.service.TrainingService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Отправка запросов на изменение расписания.
@@ -14,17 +14,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/trainings")
+@RequiredArgsConstructor
 public class TrainingController {
 
     private final TrainingService trainingService;
 
-    public TrainingController(TrainingService trainingService) {
-        this.trainingService = trainingService;
-    }
-
-    @PostMapping("/api/trainings/create")
-    public Training createTraining(TrainingChangeRequestDto training) throws TrainingNotFoundException {
+    @PostMapping("/create")
+    public Training createTraining(TrainingChangeRequestDto training) {
         return trainingService.createTraining(training);
     }
-    //todo: добавить удаление и обновление.
+
+    @PatchMapping("/change")
+    public Training changeTraining(Long trainingId, TrainingChangeRequestDto trainingToChange) throws ResourceNotFoundException {
+        return trainingService.changeSchedule(trainingId, trainingToChange);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteTraining(Long trainingId) throws ResourceNotFoundException {
+        trainingService.deleteTraining(trainingId);
+    }
+
+    @PostMapping("/createRoom")
+    public Room createRoom(Room room) {
+        return trainingService.createRoom(room);
+    }
+
 }

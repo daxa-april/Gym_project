@@ -1,27 +1,33 @@
 package com.Itstep.FitnessClub.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @Entity
+@Table (name = "bookings")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Booking {
 
     @Id
-    private Long id;
-    @OneToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bookingId;
+
+    @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+
     @OneToOne
     @JoinColumn(name = "training_training_id")
     private Training training;
-    @OneToMany
-    @JoinColumn(name = "room_id")
-    private Room room;
-    @ManyToOne
-    @JoinColumn(name = "subscription_info")
-    private Subscription subscription;
+
+    private LocalDateTime bookedAt;
 
 }

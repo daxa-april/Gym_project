@@ -1,19 +1,19 @@
 package com.Itstep.FitnessClub.repository;
 
 import com.Itstep.FitnessClub.entity.Booking;
+import com.Itstep.FitnessClub.entity.Client;
+import com.Itstep.FitnessClub.entity.Training;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * Хранит записи на тренировки.
  */
 @Repository
-public class BookingRepository {
+public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-    List<Booking> bookings;
+    Integer countByTraining(Training training);
 
-    public BookingRepository(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+    boolean existsByClientAndTraining(Client client, Training training);
+
 }

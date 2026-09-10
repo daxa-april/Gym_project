@@ -1,11 +1,12 @@
 package com.Itstep.FitnessClub.dto.request;
 
+import com.Itstep.FitnessClub.data.TrainingType;
 import com.Itstep.FitnessClub.entity.Room;
 
 import java.time.LocalDateTime;
 
 public record TrainingChangeRequestDto(
-        String trainingName,
+        TrainingType trainingName,
         LocalDateTime trainingStart,
         String trainerName,
         Room room,
@@ -13,7 +14,7 @@ public record TrainingChangeRequestDto(
 
 ) {
     @Override
-    public String trainingName() {
+    public TrainingType trainingName() {
         return trainingName;
     }
 
